@@ -1,0 +1,19 @@
+.myNav{
+    background-color: rgb(213, 213, 213);
+}
+.table-outside{
+    margin-top: 80px;
+}
+.table-inside{
+    margin: 10px;
+}
+.td-out{
+    text-align: center;
+    width: 25%;
+    height: 200px;
+}
+.img{
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}

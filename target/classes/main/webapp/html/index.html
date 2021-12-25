@@ -1,0 +1,72 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 指定字符集 -->
+    <meta charset="utf-8"/>
+    <!-- 使用Edge最新的浏览器的渲染方式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- viewport视口：网页可以根据设置的宽度自动进行适配，在浏览器的内部虚拟一个容器，容器的宽度与设备的宽度相同。
+    width: 默认宽度与设备的宽度相同
+    initial-scale: 初始的缩放比，为1:1 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>shop</title>
+
+    <!-- 1. 导入CSS的全局样式 -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
+    <script src="../js/jquery-2.1.0.min.js"></script>
+    <!-- 3. 导入bootstrap的js文件 -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript"></script>
+    <style>
+        .table-outside{
+            margin-top: 50px;
+        }
+        .table-inside{
+            margin: 10px;
+        }
+        .td-out{
+            text-align: center;
+            width: 25%;
+            height: 200px;
+        }
+        .img{
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="${pageContext.request.contextPath}/findAllGoodServlet">主页</a>
+    <h3 style="float: right">欢迎你，游客，请登录</h3>
+    <table border="1" class="table table-bordered table-hover table-outside">
+            <tr>
+                <c:forEach items="${goods}" var="good" varStatus="s">
+                    <c:if test="${s.index%4==0}">
+                        </tr>
+                        <tr>
+                    </c:if>
+                    <td class="td-out">
+                        <a href="javascript:goDetail(${good.g_id})">
+                            <table class="table-inside" id="card">
+                                <tr><td><img class="img" src="image/${good.g_img}.jpg"/></td></tr>
+                                <tr><td><h3>${good.g_name}</h3></td></tr>
+                                <tr><td><h3>${good.g_price}</h3></td></tr>
+                            </table>
+                        </a>
+                    </td>
+                </c:forEach>
+            </tr>
+    </table>
+    <script>
+        function goDetail(g_id) {
+            location.href="${pageContext.request.contextPath}/goodDetailServlet?g_id="+g_id;
+        }
+
+    </script>
+</body>
+</html>
